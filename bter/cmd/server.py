@@ -17,10 +17,22 @@ TARGET_URLS = [
     {
         "name": "get_all_pairs",
         "url": "http://data.bter.com/api2/1/pairs"
+    },
+    {
+        "name": "get_market_info",
+        "url": "http://data.bter.com/api2/1/marketinfo"
+    },
+    {
+        "name": "get_tickers",
+        "url": "http://data.bter.com/api2/1/tickers"
+    },
+    {
+        "name": "get_btc_cny",
+        "url": "http://data.bter.com/api2/1/ticker/btc_cny"
     }
 ]
 
-SUPPORT_NAME = ['get_all_pairs']
+SUPPORT_NAME = ['get_btc_cny']
 
 
 class Manager(object):
