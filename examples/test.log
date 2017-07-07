@@ -1,0 +1,29 @@
+2017-07-07 23:49:33,447 [36681] INFO __main__: log some info
+2017-07-07 23:49:33,447 [36681] WARNING __main__: log some warning
+2017-07-07 23:49:33,448 [36681] ERROR __main__: log some error
+2017-07-07 23:49:33,448 [36681] INFO test_print_log_sub_module: log in sub-module
+2017-07-07 23:50:59,132 [36691] INFO __main__: log some info
+2017-07-07 23:50:59,132 [36691] WARNING __main__: log some warning
+2017-07-07 23:50:59,132 [36691] ERROR __main__: log some error
+2017-07-07 23:50:59,132 [36691] INFO test_print_log_sub_module: log in sub-module
+2017-07-08 00:01:22,764 [36765] INFO __main__: log some info
+2017-07-08 00:01:22,764 [36765] WARNING __main__: log some warning
+2017-07-08 00:01:22,764 [36765] ERROR __main__: log some error
+2017-07-08 00:01:22,765 [36765] INFO test_print_log_sub_module: log in sub-module
+2017-07-08 00:02:01,008 [36772] INFO __main__: log some info
+2017-07-08 00:02:01,008 [36772] WARNING __main__: log some warning
+2017-07-08 00:02:01,008 [36772] ERROR __main__: log some error
+2017-07-08 00:02:01,009 [36772] INFO test_print_log_sub_module: log in sub-module
+2017-07-08 00:02:51,339 [PID 36779] [INFO] __main__:24 log some info
+2017-07-08 00:02:51,340 [PID 36779] [WARNING] __main__:25 log some warning
+2017-07-08 00:02:51,340 [PID 36779] [ERROR] __main__:26 log some error
+2017-07-08 00:02:51,340 [PID 36779] [INFO] test_print_log_sub_module:8 log in sub-module
+2017-07-08 00:04:30,791 [PID 36813] [INFO] __main__:26 log some info
+2017-07-08 00:04:30,791 [PID 36813] [WARNING] __main__:27 log some warning
+2017-07-08 00:04:30,791 [PID 36813] [ERROR] __main__:28 log some error
+2017-07-08 00:04:30,791 [PID 36813] [INFO] test_print_log_sub_module:8 log in sub-module
+2017-07-08 00:05:11,536 [PID 36824] [INFO] __main__:26 log some info
+2017-07-08 00:05:11,536 [PID 36824] [WARNING] __main__:27 log some warning
+2017-07-08 00:05:11,536 [PID 36824] [ERROR] __main__:28 log some error
+2017-07-08 00:05:11,537 [PID 36824] [INFO] __main__:30 some data is:testdata
+2017-07-08 00:05:11,537 [PID 36824] [INFO] test_print_log_sub_module:8 log in sub-module

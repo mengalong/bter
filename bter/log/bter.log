@@ -1,0 +1,37 @@
+2017-07-08 00:26:52,884 [PID 37050] [ERROR] __main__:44 The url is None ignore it
+2017-07-08 00:26:52,884 [PID 37050] [INFO] __main__:55 Fetch the api url:http://data.bter.com/api2/1/pairs data:None
+2017-07-08 00:35:52,276 [PID 37127] [CRITICAL] root:100 Traceback (most recent call last):
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 53, in <module>
+    manager.get_datas()
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 45, in get_datas
+    data = self._get_data(url=url_target)
+TypeError: _get_data() takes at least 1 argument (1 given)
+
+2017-07-08 00:36:57,557 [PID 37135] [CRITICAL] root:100 Traceback (most recent call last):
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 53, in <module>
+    manager.get_datas()
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 45, in get_datas
+    data = self._get_data(url=url_target)
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 37, in _get_data
+    response = self.http_client.download(url)
+TypeError: download() takes exactly 1 argument (2 given)
+
+2017-07-08 00:37:03,381 [PID 37131] [CRITICAL] root:100 Traceback (most recent call last):
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 54, in <module>
+  File "/Users/mengalong/code/git/public-soft/bter/bter/cmd/server.py", line 46, in get_datas
+    logger.info("Fetch the api name:%s url:%s data:%s" %
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/bdb.py", line 55, in trace_dispatch
+    return self.dispatch_exception(frame, arg)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/bdb.py", line 96, in dispatch_exception
+    self.user_exception(frame, arg)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/pdb.py", line 203, in user_exception
+    self.interaction(frame, exc_traceback)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/pdb.py", line 210, in interaction
+    self.cmdloop()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cmd.py", line 130, in cmdloop
+    line = raw_input(self.prompt)
+KeyboardInterrupt
+
+2017-07-08 00:37:31,700 [PID 37142] [INFO] __main__:47 Fetch the api name:get_all_pairs url:http://data.bter.com/api2/1/pairs data:<Response [200]>
+2017-07-08 00:37:49,807 [PID 37144] [INFO] __main__:47 Fetch the api name:get_all_pairs url:http://data.bter.com/api2/1/pairs data:["btc_cny","ltc_cny","xrp_cny","xrp_btc","qtum_btc","qtum_cny","etp_btc","etp_cny","btrx_cny","btrx_btc","bts_cny","cnc_cny","rep_cny","bat_cny","snt_cny","snt_btc","snt_eth","bat_eth","ico_cny","ico_btc","ico_eth","eos_cny","eos_btc","eos_eth","doge_cny","dash_cny","eth_cny","etc_cny","ftc_cny","ifc_cny","nmc_cny","nxt_cny","ppc_cny","shell_cny","tips_cny","tix_cny","xcp_cny","xmr_cny","xpm_cny","xtc_cny","ltc_btc","bts_btc","cnc_btc","rep_btc","bat_btc","hkg_btc","doge_btc","dash_btc","eth_btc","etc_btc","ftc_btc","nmc_btc","nxt_btc","ppc_btc","xtc_btc","xcn_btc","xcp_btc","xem_btc","xem_cny","xpm_btc","xmr_btc","mg_btc","ifc_ltc","tips_ltc","tix_ltc","etc_eth","zec_btc","zec_cny"]
+2017-07-08 00:39:57,728 [PID 37162] [INFO] __main__:50 Fetch the api name:get_all_pairs url:http://data.bter.com/api2/1/pairs data:["btc_cny","ltc_cny","xrp_cny","xrp_btc","qtum_btc","qtum_cny","etp_btc","etp_cny","btrx_cny","btrx_btc","bts_cny","cnc_cny","rep_cny","bat_cny","snt_cny","snt_btc","snt_eth","bat_eth","ico_cny","ico_btc","ico_eth","eos_cny","eos_btc","eos_eth","doge_cny","dash_cny","eth_cny","etc_cny","ftc_cny","ifc_cny","nmc_cny","nxt_cny","ppc_cny","shell_cny","tips_cny","tix_cny","xcp_cny","xmr_cny","xpm_cny","xtc_cny","ltc_btc","bts_btc","cnc_btc","rep_btc","bat_btc","hkg_btc","doge_btc","dash_btc","eth_btc","etc_btc","ftc_btc","nmc_btc","nxt_btc","ppc_btc","xtc_btc","xcn_btc","xcp_btc","xem_btc","xem_cny","xpm_btc","xmr_btc","mg_btc","ifc_ltc","tips_ltc","tix_ltc","etc_eth","zec_btc","zec_cny"]
