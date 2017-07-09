@@ -1,0 +1,10 @@
+CHANGES
+=======
+
+* mv README to README.md
+* add the build tools
+* modify the .gitignore to exclude log file
+* rm log file
+* delete some useless file
+* add some example api
+* init the bter demo
