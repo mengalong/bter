@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* add etc file
+* add etc file
 * mv README to README.md
 * add the build tools
 * modify the .gitignore to exclude log file
