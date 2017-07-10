@@ -1,6 +1,7 @@
 CHANGES
 =======
 
+* modify the configuration of bter/etc in setup.cfg
 * add etc file
 * add etc file
 * mv README to README.md
