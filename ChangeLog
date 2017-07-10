@@ -1,6 +1,7 @@
 CHANGES
 =======
 
+* modify setup.cfg
 * modify the configuration of bter/etc in setup.cfg
 * add etc file
 * add etc file
