@@ -3,3 +3,4 @@ daiquiri >= 1.0.1 #
 setuptools
 pbr
 ConfigParser
+cotyledon

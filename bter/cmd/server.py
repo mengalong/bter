@@ -12,11 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import cotyledon
 import ConfigParser
-
 import daiquiri
 import sys
 
+from bter.agent import manager
 from bter.http import http_util
 from bter import service
 
@@ -76,12 +77,17 @@ class Manager(object):
 #     manager = Manager(TARGET_URLS)
 #     manager.get_datas()
 
+def create_agent(work_id, conf):
+    return manager.AgentManager()
 
 def main():
     conf = ConfigParser.ConfigParser()
     service.service_prepare(config_file=sys.argv[1], conf=conf)
     logger.info("The config path is:%s" % conf.get('DEFAULT', 'conf_path'))
     logger.error("The error log")
+    sm = cotyledon.ServiceManager()
+    sm.add(create_agent, args=(conf,))
+    sm.run()
 
 if __name__ == "__main__":
     main()
