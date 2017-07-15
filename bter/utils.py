@@ -16,6 +16,8 @@ import daiquiri
 import daiquiri.formatter
 import logging
 import os
+import threading
+import time
 
 
 def init_log_info(log_path, log_filename):
@@ -35,3 +37,15 @@ def init_log_info(log_path, log_filename):
                                          "%(message)s")),
         )
     )
+
+
+def spawn_thread(target, *args, **kwargs):
+    t = threading.Thread(target=target, args=args, kwargs=kwargs)
+    t.daemon = True
+    t.start()
+    return t
+
+
+def delayed(delay, target, *args, **kwargs):
+    time.sleep(delay)
+    return target(*args, **kwargs)

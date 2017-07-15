@@ -12,3 +12,44 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import daiquiri
+import os
+import yaml
+
+logger = daiquiri.getLogger(__name__)
+
+
+class ConfigManagerBase(object):
+    def __init__(self, conf):
+        self.conf = conf
+        self.cfg_loc = None
+
+    def load_config(self, cfg_file):
+        """Load a configuration file and set its refresh values."""
+        if os.path.exists(cfg_file):
+            self.cfg_loc = cfg_file
+
+        with open(self.cfg_loc) as fap:
+            data = fap.read()
+        conf = yaml.safe_load(data)
+        logger.info("Config file: %s", conf)
+        return conf
+
+
+class PipeLineManager(ConfigManagerBase):
+    def __init__(self, conf, cfg_file):
+        self.conf = conf
+        cfg = self.load_config(cfg_file)
+
+        unique_names = set()
+        sources = []
+        for s in cfg.get('sources'):
+            name = s.get('name')
+            if name in unique_names:
+                # TODO(mengalong): use the pipelineException
+                raise Exception("Duplicated source names: %s" % name)
+            else:
+                unique_names.add(name)
+                sources.append(s)
+        unique_names.clear()
+        self.sources = sources

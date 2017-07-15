@@ -17,7 +17,13 @@ import cotyledon
 import daiquiri
 import itertools
 
+
+from concurrent import futures
+from futurist import periodics
+
 from bter.agent import plugin_base
+from bter import pipeline
+from bter import utils
 from stevedore import extension
 
 logger = daiquiri.getLogger(__name__)
@@ -25,20 +31,67 @@ logger = daiquiri.getLogger(__name__)
 # 加载pipeline，区分不同的任务的间隔时间
 #
 #
+
+
 class AgentManager(cotyledon.Service):
-# class AgentManager():
     def __init__(self, conf=None, namespaces=None):
         self.name = "agent"
         self.conf = conf
+        self.conf_path = self.conf.get('DEFAULT', "conf_path")
         extensions = (self._extensions('poll', namespace, self.conf).extensions
                       for namespace in namespaces)
         self.extensions = list(itertools.chain(*list(extensions)))
+
+        cfg_file = self.conf_path + "/pipeline.yaml"
+        # TODO(mengalong): polling_manager 初始化的时候需要支持publisher的初始化
+        self.polling_manager = pipeline.PipeLineManager(self.conf, cfg_file)
 
     def run(self):
         for item in self.extensions:
             logger.debug("the extension is:%s" % item.name)
             item.obj.get_samples()
         logger.info("start to run")
+        data = self.setup_polling_tasks()
+        logger.debug("polling tasks is:%s" % data)
+
+        self.polling_periodics = periodics.PeriodicWorker.create(
+            [], executor_factory=lambda:
+            futures.ThreadPoolExecutor(max_workers=10))
+
+        for interval, polling_task in data.items():
+            delay_time = 1
+
+            @periodics.periodic(spacing=interval, run_immediately=False)
+            def task(running_task):
+                self.interval_task(running_task)
+
+            # TODO(mengalong)：polling_task[0][0] 需要修改为适配模式，
+            # 按照list进行遍历执行
+            utils.spawn_thread(utils.delayed, delay_time,
+                               self.polling_periodics.add, task,
+                               polling_task[0][0])
+
+        utils.spawn_thread(self.polling_periodics.start, allow_empty=True)
+
+    def interval_task(self, task):
+        # NOTE(sileht): remove the previous keystone client
+        # and exception to get a new one in this polling cycle.
+
+        task.obj.get_samples()
+
+    def setup_polling_tasks(self):
+        polling_tasks = {}
+        for source in self.polling_manager.sources:
+            polling_task = None
+            logger.debug("current source is:%s" % source)
+            for pollster in self.extensions:
+                if pollster.name in source.get('meters'):
+                    polling_task = polling_tasks.get(source.get('interval'))
+                    if not polling_task:
+                        polling_task = []
+                        polling_tasks[source.get('interval')] = polling_task
+                    polling_task.append((pollster, source))
+        return polling_tasks
 
     @staticmethod
     def _get_ext_mgr(namespace, *args, **kwargs):
@@ -50,7 +103,7 @@ class AgentManager(cotyledon.Service):
                 return
 
             logger.error("Failed to import extension for %(name)r: %(error)s",
-                      {'name': ep.name, 'error': exc})
+                         {'name': ep.name, 'error': exc})
             if isinstance(exc, ImportError):
                 return
             raise exc

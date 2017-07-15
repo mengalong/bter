@@ -16,6 +16,7 @@ import daiquiri
 
 logger = daiquiri.getLogger(__name__)
 
+
 class BterBtcPollster(object):
     def __init__(self, conf=None):
         self.conf = conf

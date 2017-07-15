@@ -1,0 +1,12 @@
+---
+sources:
+  - name: bter_source
+    interval: 10
+    meters:
+      - "bter.btc"
+    sinks:
+      - "meter_sink"
+sinks:
+    - name: meter_sink
+      publishers:
+        - file://

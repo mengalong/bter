@@ -12,10 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import cotyledon
 import ConfigParser
+import cotyledon
 import daiquiri
 import sys
+
 
 from bter.agent import manager
 from bter.http import http_util
@@ -80,6 +81,7 @@ class Manager(object):
 def create_agent(work_id, conf):
     namespaces = conf.get('DEFAULT', 'namespaces').split(',')
     return manager.AgentManager(conf, namespaces)
+
 
 def main():
     conf = ConfigParser.ConfigParser()
