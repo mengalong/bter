@@ -78,7 +78,8 @@ class Manager(object):
 #     manager.get_datas()
 
 def create_agent(work_id, conf):
-    return manager.AgentManager()
+    namespaces = conf.get('DEFAULT', 'namespaces').split(',')
+    return manager.AgentManager(conf, namespaces)
 
 def main():
     conf = ConfigParser.ConfigParser()

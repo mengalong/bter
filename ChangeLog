@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* add cotyledon service support
+* add conf parser and license header
 * modify setup.cfg
 * modify the configuration of bter/etc in setup.cfg
 * add etc file
