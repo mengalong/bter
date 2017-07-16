@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+* implement the example get data via http from bter
+* implement the file driver for storage
+* re-organize the plugin
+* implement period task
+* support load extensions and add unit test directory
 * add cotyledon service support
 * add conf parser and license header
 * modify setup.cfg
