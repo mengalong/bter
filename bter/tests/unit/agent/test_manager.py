@@ -22,7 +22,7 @@ from bter import service
 if __name__ == "__main__":
     conf = ConfigParser.ConfigParser()
     config_file = "/Users/mengalong/code/git/bter/etc/bter/bter.ini"
-    service.service_prepare(config_file, conf=conf)
+    service.service_prepare(config_file=config_file, conf=conf)
 
     namespaces = conf.get('DEFAULT', 'namespaces').split(',')
     manager = manager.AgentManager(conf, namespaces)
