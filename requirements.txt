@@ -1,4 +1,4 @@
-logging >= 0.5.1.2 #
+logging
 daiquiri >= 1.0.1 #
 setuptools
 pbr
@@ -6,4 +6,3 @@ ConfigParser
 cotyledon
 stevedore
 six
-time

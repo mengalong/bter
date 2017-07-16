@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* add the readme info
+* modify the ChangeLog
 * implement the example get data via http from bter
 * implement the file driver for storage
 * re-organize the plugin
