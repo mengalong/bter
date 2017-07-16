@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+0.0.1
+-----
+
+* modify the readme.md
+* fix bug: bter-server cannot start
 * add the readme info
 * modify the ChangeLog
 * implement the example get data via http from bter

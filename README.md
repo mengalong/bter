@@ -1,6 +1,8 @@
 # Content
 
-This is a simple demo to get data from bter.com
+This is a simple demo-server for get data from bter.com
+
+You can add your own plugin to implement more function easily.
 
 # Install
 
