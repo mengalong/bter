@@ -1,5 +1,4 @@
-# coding=utf8
-#  Copyright 2017~ mengalong <alongmeng@gmail.com>
+# Copyright 2017~ mengalong <alongmeng@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -12,24 +11,24 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 import daiquiri
-import random
-import time
+
+from six.moves.urllib import parse as urlparse
+from stevedore import driver
 
 logger = daiquiri.getLogger(__name__)
 
 
-class BterBtcPollster(object):
-    def __init__(self, conf=None):
+class PublisherManager(object):
+    def __init__(self, conf, url):
         self.conf = conf
+        self.url = url
 
-    def get_samples(self):
-        logger.debug("In the plugin:%s" % "BterBtcPollster")
-        timestamp = time.strftime("%Y-%m-%d %X", time.localtime())
-        sample = {'counter_name': 'btc_data.sell',
-                  'timestamp': timestamp,
-                  'volume': random.randint(1, 1000),
-                  'resource_metadata': {
-                      'source': 'bter_project'
-                  }}
-        yield sample
+        parsed_url = urlparse.urlparse(url)
+        logger.debug("The parsed url for publisher is :%s" % str(parsed_url))
+        self.publish_driver = driver.DriverManager(
+            'bter.publisher',
+            parsed_url.scheme,
+            invoke_args=(self.conf,),
+            invoke_on_load=True).driver

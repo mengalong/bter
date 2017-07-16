@@ -23,6 +23,7 @@ from futurist import periodics
 
 from bter.agent import plugin_base
 from bter import pipeline
+from bter import publish
 from bter import utils
 from stevedore import extension
 
@@ -51,6 +52,10 @@ class AgentManager(cotyledon.Service):
             logger.debug("the extension is:%s" % item.name)
             item.obj.get_samples()
         logger.info("start to run")
+
+        self.start_polling_task()
+
+    def start_polling_task(self):
         data = self.setup_polling_tasks()
         logger.debug("polling tasks is:%s" % data)
 
@@ -69,15 +74,28 @@ class AgentManager(cotyledon.Service):
             # 按照list进行遍历执行
             utils.spawn_thread(utils.delayed, delay_time,
                                self.polling_periodics.add, task,
-                               polling_task[0][0])
+                               polling_task)
 
         utils.spawn_thread(self.polling_periodics.start, allow_empty=True)
 
-    def interval_task(self, task):
+    def interval_task(self, tasks):
         # NOTE(sileht): remove the previous keystone client
         # and exception to get a new one in this polling cycle.
+        # for task_obj in task:
+        #     task.obj.get_samples()
+        for task_obj in tasks:
+            self.do_single_task(task_obj)
 
-        task.obj.get_samples()
+    def do_single_task(self, task):
+        task_obj = task[0]
+        task_source = task[1]
+        task_publisher = task[2]
+
+        logger.debug("task source is:%s" % task_source)
+        logger.info("start to get data:%s" % task_obj.name)
+
+        for samples in task_obj.obj.get_samples():
+            task_publisher.publish_driver.record_metering_sample(samples)
 
     def setup_polling_tasks(self):
         polling_tasks = {}
@@ -90,7 +108,11 @@ class AgentManager(cotyledon.Service):
                     if not polling_task:
                         polling_task = []
                         polling_tasks[source.get('interval')] = polling_task
-                    polling_task.append((pollster, source))
+                    publisher_url = source.get('publishers')[0]
+
+                    publisher_obj = publish.PublisherManager(self.conf,
+                                                             publisher_url)
+                    polling_task.append((pollster, source, publisher_obj))
         return polling_tasks
 
     @staticmethod

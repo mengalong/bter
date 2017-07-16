@@ -6,6 +6,8 @@ sources:
       - "bter.btc"
     sinks:
       - "meter_sink"
+    publishers:
+      - "file://"
 sinks:
     - name: meter_sink
       publishers:

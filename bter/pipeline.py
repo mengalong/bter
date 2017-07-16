@@ -53,3 +53,17 @@ class PipeLineManager(ConfigManagerBase):
                 sources.append(s)
         unique_names.clear()
         self.sources = sources
+        logger.info("all the sources is:%s" % self.sources)
+
+        sinks = []
+        for s in cfg.get('sinks'):
+            name = s.get('name')
+            if name in unique_names:
+                # TODO(mengalong): use the pipelineException
+                raise Exception("Duplicated sink names: %s" % name)
+            else:
+                unique_names.add(name)
+                sinks.append(s)
+        unique_names.clear()
+        self.sinks = sinks
+        logger.info("all the sinks is:%s" % self.sinks)
