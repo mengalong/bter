@@ -26,7 +26,12 @@ You can add your own plugin to implement more function easily.
 
 * After install bter, I use the directory: /Users/mengalong/code/t/xy as the top path
 * In the top_path, there is the directory 'etc' that contains the bter.ini and pipeline.yaml
-* Use the command-line to start the server: bter-server /Users/mengalong/code/t/xy/etc/bter/bter.ini &>/dev/null </dev/null &
+* Use the command-line to start the server:
+```cython
+bter-server /Users/mengalong/code/t/xy/etc/bter/bter.ini &>/dev/null </dev/null &
+
+```
+
 * My bter.ini like this:
 ```cython
 [DEFAULT]
