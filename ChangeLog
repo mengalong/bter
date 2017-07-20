@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+0.0.2
+-----
+
 * update README.md for database
 * update the Changelog
 * add dist and bter.egg.* into .gitignore
