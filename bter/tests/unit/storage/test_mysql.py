@@ -1,3 +1,17 @@
+# Copyright 2017~ mengalong <alongmeng@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License. You may obtain
+# a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+
 import MySQLdb
 
 from six.moves.urllib import parse as urlparse
@@ -14,13 +28,11 @@ class MysqlClient(object):
         self.init_connection_handler()
 
     def init_connection_handler(self):
-        conn = MySQLdb.connect(
-                host='localhost',
-                port = 3306,
-                user='root',
-                passwd='123456',
-                db ='bter',
-                )
+        conn = MySQLdb.connect(host='localhost',
+                               port=3306,
+                               user='root',
+                               passwd='123456',
+                               db='bter')
         cur = conn.cursor()
         self.conn = conn
         self.cur = cur
@@ -54,15 +66,17 @@ def test_select_data(obj):
     for i in result:
         print("test get data from db:%s" % str(i))
 
+
 def test_parse_conn(obj):
     conn = "mysql://root:123456@localhost:3306/bter"
+
     # parsed_url = netutils.urlsplit(conn)
     parsed_url = urlparse.urlparse(conn)
-    print parsed_url.username
-    print parsed_url.password
-    print parsed_url.port
-    print parsed_url.hostname
-    print parsed_url
+    print(parsed_url.username)
+    print(parsed_url.password)
+    print(parsed_url.port)
+    print(parsed_url.hostname)
+    print(parsed_url)
 
 
 def main():

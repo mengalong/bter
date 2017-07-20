@@ -62,6 +62,5 @@ class DataBasePublisher(object):
         self.database = d
         logger.debug("the database obj is:%s" % self.database)
 
-
     def record_metering_sample(self, sample):
         self.database.insert(sample)

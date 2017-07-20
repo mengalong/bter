@@ -66,6 +66,7 @@ class AgentManager(cotyledon.Service):
             delay_time = 1
             logger.info("interval:%s polling_task:%s" %
                         (interval, polling_task))
+
             @periodics.periodic(spacing=interval, run_immediately=False)
             def task(running_task):
                 logger.info("start the task")

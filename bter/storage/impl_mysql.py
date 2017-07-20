@@ -30,13 +30,11 @@ class MysqlClient(object):
         self.init_connection_handler()
 
     def init_connection_handler(self):
-        conn = MySQLdb.connect(
-                host=self.host,
-                port=self.port,
-                user=self.user,
-                passwd=self.passwd,
-                db =self.database,
-                )
+        conn = MySQLdb.connect(host=self.host,
+                               port=self.port,
+                               user=self.user,
+                               passwd=self.passwd,
+                               db=self.database,)
         cur = conn.cursor()
         self.conn = conn
         self.cur = cur
