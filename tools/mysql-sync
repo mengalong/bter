@@ -1,0 +1,2 @@
+create database bter
+create table meter(id int(5) not null primary key auto_increment,counter_name char(20) not null,timestamp char(30) not null, volume char(10) not null, resource_metadata text)
