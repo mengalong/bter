@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+* add mysql-sync for table create
+* fix some pep8 error
+* implement the mysql interface
 * modify the readme
 * modify the readme
 

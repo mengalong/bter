@@ -1,3 +1,5 @@
 *.pyc
 *.pyo
 bter/log/*
+dist/*
+bter.egg.*
