@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* update README.md for database
+* update the Changelog
 * add dist and bter.egg.* into .gitignore
 * add mysql-sync for table create
 * fix some pep8 error
