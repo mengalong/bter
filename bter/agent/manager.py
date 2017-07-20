@@ -52,7 +52,6 @@ class AgentManager(cotyledon.Service):
             logger.debug("the extension is:%s" % item.name)
             item.obj.get_samples()
         logger.info("start to run")
-
         self.start_polling_task()
 
     def start_polling_task(self):
@@ -65,9 +64,11 @@ class AgentManager(cotyledon.Service):
 
         for interval, polling_task in data.items():
             delay_time = 1
-
+            logger.info("interval:%s polling_task:%s" %
+                        (interval, polling_task))
             @periodics.periodic(spacing=interval, run_immediately=False)
             def task(running_task):
+                logger.info("start the task")
                 self.interval_task(running_task)
 
             # TODO(mengalong)：polling_task[0][0] 需要修改为适配模式，

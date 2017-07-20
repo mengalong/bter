@@ -7,8 +7,8 @@ sources:
     sinks:
       - "meter_sink"
     publishers:
-      - "file://"
+      - "database://"
 sinks:
     - name: meter_sink
       publishers:
-        - file://
+        - database://
