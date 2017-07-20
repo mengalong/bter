@@ -1,6 +1,7 @@
 CHANGES
 =======
 
+* add dist and bter.egg.* into .gitignore
 * add mysql-sync for table create
 * fix some pep8 error
 * implement the mysql interface
