@@ -43,8 +43,9 @@ class MysqlClient(object):
         data = sample['resource_metadata']
         data_re = str(data)
         sql_cmd = "insert into meter (counter_name, timestamp, volume, " \
-                  "resource_metadata) values(\"%s\", \"%s\", 0, \'%s\')" % \
-                  (sample['counter_name'], sample['timestamp'], data_re)
+                  "resource_metadata) values(\"%s\", \"%s\", %d, \'%s\')" % \
+                  (sample['counter_name'], sample['timestamp'],
+                   sample['volume'], data_re)
         logger.debug("sql_cmd is:%s" % sql_cmd)
         result = self.cur.execute(sql_cmd)
         self.conn.commit()
