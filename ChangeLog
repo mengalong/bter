@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+* modify the insert function in impl_mysql
+* update Changelog info
+
 0.0.2
 -----
 
